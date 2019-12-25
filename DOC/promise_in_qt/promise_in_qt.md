@@ -157,6 +157,6 @@ deferred->ObserveOn([=](DeferredTask<QString>::Deferred& def) {
 
 上述的 **DeferredTask** 就完成了异步调用场景中顺序执行逻辑。
 
-
+DeferredTask 实现,请参考[Deferred Task](https://github.com/turbin/DeferredTask/blob/master/deferredtask.hpp)
 
 
