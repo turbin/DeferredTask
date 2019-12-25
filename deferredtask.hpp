@@ -10,71 +10,7 @@
 #include <QMutex>
 
 #include <functional>
-#include "logger.hpp"
 
-
-//class AsyncTaskDelegate: public QObject
-//{
-//    Q_OBJECT
-//public:
-//    typedef std::function<void(void)> OnRunning;
-//    typedef std::function<void(void)> OnFinished;
-//    AsyncTaskDelegate(QObject* parent=0)
-//                      : QObject(parent)
-//                      , mDaemonThread(new QThread(0))
-//    {
-
-//        connect(mDaemonThread, SIGNAL(started()),  this,          SLOT(runTask()));
-//        connect(mDaemonThread, SIGNAL(finished()), this,          SIGNAL(finished()));
-//        connect(mDaemonThread, SIGNAL(finished()), mDaemonThread, SLOT(deleteLater()));
-//        moveToThread(mDaemonThread);
-//    }
-
-//    ~AsyncTaskDelegate(){
-//        LOGGING_LEVEL("debug")<<"@destory";
-//    }
-
-//    void release(){
-//         deleteLater();
-//    }
-//    AsyncTaskDelegate* onRunning(OnRunning running)
-//    {
-//          mOnTaskRunning = running;
-//          return this;
-//    }
-
-//    AsyncTaskDelegate* onFinished(OnFinished finished){
-//        mFinished = finished;
-//        return this;
-//    }
-
-//    void start()
-//    {
-//        mDaemonThread->start();
-//    }
-
-//    static inline AsyncTaskDelegate* ConcurrentRun(OnRunning run){
-//          return (new AsyncTaskDelegate())->onRunning(run);
-//    }
-
-//signals:
-//    void finished();
-
-//private slots:
-//    void runTask()
-//    {
-//        if(mOnTaskRunning) mOnTaskRunning();
-
-//        mDaemonThread->quit();
-
-//        if(mFinished) mFinished();
-//    }
-
-//private:
-//    QThread*              mDaemonThread;
-//    OnRunning             mOnTaskRunning;
-//    OnFinished            mFinished;
-//};
 
 namespace DeferredTaskPrivate {
 class DeferredInterface
