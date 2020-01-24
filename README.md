@@ -128,5 +128,10 @@ while(!isRaised) {
   4. 当 **Deferred**对象上所有**then()**所绑定的lambda函数都被执行完成，该对象将被自动释放。
   5. **DeferredTask.observeOn()** 的异步执行特性使得，不论 **QTcpSocket** 何时连接上服务，任何一个新**QTcpClient**对象都将被绑定到一个新创建的**Deferred**对象上执行，而不会阻塞 **QTcpServer**的 Accept()方法。从而提升系统的吞吐性能。
 
+## 3. TODO
+
+1. 模仿 jQuery.deferred 添加 done()方法来结束流程；
+2. 借鉴 RxJava 添加 Schedule()将Deferred对象分配到不同的线程上执行，提高并发能力；
+
 
 [1]:https://en.wikipedia.org/wiki/Reactive_programming
