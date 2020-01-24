@@ -63,13 +63,13 @@ public:
 
     void clearCallBack()
     {
-        if(mSlotCallBack) delete mSlotCallBack;
+        if(mSlotCallBack != nullptr) delete mSlotCallBack;
          mSlotCallBack = nullptr;
     }
 
     virtual ~SlotsHandler()
     {
-        if(mSlotCallBack) delete mSlotCallBack;
+        if(mSlotCallBack != nullptr) delete mSlotCallBack;
 
          mSlotCallBack = nullptr;
     }
@@ -139,7 +139,7 @@ public:
     virtual ~DeferredHandler(){
         qDebug("@Destory DeferredHandler =%p", this);
 
-        if(mSignalHandler) mSignalHandler->release();
+        if(mSignalHandler != nullptr) mSignalHandler->release();
 
         mSignalHandler = nullptr;
     }
@@ -231,7 +231,6 @@ public:
           virtual void onTaskFinishedDone(DeferredTaskPrivate::DeferredHandler* self)
           {
               qDebug()<<"onTaskFinishedDone Deferred= "<<this;
-              mDeferredQueueMananger->releaseDeferred(this);
               release();
           }
 
@@ -298,22 +297,16 @@ public:
     }
 
     Deferred& observeOn(Observee observee) {
+        // no need putting a mutex in deferred object due to we assumed
+        // the deferred object was not running in the concurrent enviroment.
+
+        QMutexLocker _auto_locker(&mMutex);
         Deferred* def = new Deferred(observee, this);
         return *def;
     }
 
 private:
-
-    void releaseDeferred(Deferred* defer)
-    {
-//        QMutexLocker _autoLocker(&mMutex);
-//        qDebug()<<"remove one "<<mDeferredList.removeOne(defer)<<" @defer_p "<<defer<<" the num: "<<mDeferredList.size();
-    }
-
-
     QMutex               mMutex;
-//    QList<Deferred*>     mDeferredList;
-
     friend class DeferredTask::Deferred;
 };
 
