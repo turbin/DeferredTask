@@ -66,7 +66,8 @@ while(!isRaised) {
 
 ## 2. The Deferred Class.
 
-借鉴于响应式编程范式，我们借鉴了 Javascript语言中的 **Promise** 的接口设计，基于Qt Framework实现了一套类似的异步顺序执行流程框架实现，并命名为 **DeferredTask** .
+借鉴于响应式编程范式，我们借鉴了 Javascript语言中的 **Promise** 的接口设计，基于Qt Framework实现了一套类似的异步顺序执行流程框架实现，并命名为
+[The DeferredTask][2].
 
 * 下面是调用示例:
 
@@ -128,6 +129,8 @@ while(!isRaised) {
   4. 当 **Deferred**对象上所有**then()**所绑定的lambda函数都被执行完成，该对象将被自动释放。
   5. **DeferredTask.observeOn()** 的异步执行特性使得，不论 **QTcpSocket** 何时连接上服务，任何一个新**QTcpClient**对象都将被绑定到一个新创建的**Deferred**对象上执行，而不会阻塞 **QTcpServer**的 Accept()方法。从而提升系统的吞吐性能。
 
+
+
 ## 3. TODO
 
 1. 模仿 jQuery.deferred 添加 done()方法来结束流程；
@@ -135,3 +138,4 @@ while(!isRaised) {
 
 
 [1]:https://en.wikipedia.org/wiki/Reactive_programming
+[2]:https://github.com/turbin/DeferredTask

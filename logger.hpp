@@ -1,6 +1,11 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+/*
+    author: Turbine Yan
+    verison: 1.00
+*/
+
 #include <QDebug>
 #include <stdarg.h>
 #include <QString>

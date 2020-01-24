@@ -1,6 +1,9 @@
 #ifndef DEFERREDTASK_H
 #define DEFERREDTASK_H
-
+/*
+    author: Turbine Yan
+    verison: 1.01
+*/
 #include <QObject>
 #include <QThread>
 #include <QDebug>
